@@ -12,7 +12,12 @@ class Tag extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['user_id','name', 'slug', 'description', 'is_active'];
+    protected $fillable = ['user_id','name', 'slug', 'description','type', 'is_active'];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * Get all articles with this tag.
@@ -20,10 +25,5 @@ class Tag extends Model
     public function articles(): BelongsToMany
     {
         return $this->belongsToMany(Article::class);
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
     }
 }

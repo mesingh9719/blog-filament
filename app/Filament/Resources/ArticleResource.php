@@ -167,6 +167,8 @@ class ArticleResource extends Resource
                                     ->createOptionForm([
                                         Forms\Components\Hidden::make('user_id')
                                             ->default(fn () => Auth::id()),
+                                        Forms\Components\Hidden::make('type')
+                                            ->default('user'),
                                         Forms\Components\TextInput::make('name')
                                             ->required()
                                             ->maxLength(255)
@@ -178,6 +180,8 @@ class ArticleResource extends Resource
                                             ->required()
                                             ->maxLength(255)
                                             ->unique(Category::class, 'slug'),
+                                        Forms\Components\Textarea::make('description')
+                                            ->maxLength(255),
                                     ])
                                     ->helperText('Main category for this article')
                                     ->required(),
@@ -206,6 +210,8 @@ class ArticleResource extends Resource
                                     ->createOptionForm([
                                         Forms\Components\Hidden::make('user_id')
                                             ->default(fn () => Auth::id()),
+                                        Forms\Components\Hidden::make('type')
+                                            ->default('user'),
                                         Forms\Components\TextInput::make('name')
                                             ->required()
                                             ->maxLength(255)

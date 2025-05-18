@@ -12,16 +12,16 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['user_id','name', 'slug', 'description', 'is_active', 'parent_id', 'order'];
-
-    public function primaryArticles(): HasMany
-    {
-        return $this->hasMany(Article::class, 'primary_category_id');
-    }
+    protected $fillable = [ 'user_id','name', 'slug', 'description', 'is_active', 'parent_id', 'order','type'];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function primaryArticles(): HasMany
+    {
+        return $this->hasMany(Article::class, 'primary_category_id');
     }
 
     /**
